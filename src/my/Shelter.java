@@ -25,8 +25,7 @@ public class Shelter {
 			shelterAnimals.add(a);
 			
 		}catch(IndexOutOfBoundsException iobe){
-			System.out.println("The shelter is full");
-			System.out.println("Unable to add new animal");
+			new ErrorDialog("The shelter is full \nUnable to add new animal");
 			capacity--;
 		}
 	}
@@ -40,8 +39,7 @@ public class Shelter {
 			shelterAnimals.add(a);
 			
 		}catch(IndexOutOfBoundsException iobe){
-			System.out.println("The shelter is full");
-			System.out.println("Unable to add new animal");
+			new ErrorDialog("The shelter is full \nUnable to add new animal");
 			capacity--;
 		}
 	}
@@ -55,7 +53,8 @@ public class Shelter {
 				throw new IndexOutOfBoundsException();
 			
 		}catch(IndexOutOfBoundsException iobe){
-			System.out.println("The shelter is empty");
+			capacity++;
+			new ErrorDialog("The shelter is empty");
 		}
 		for(Animal a : shelterAnimals){
 			if(a.getID() == ID){
@@ -63,12 +62,17 @@ public class Shelter {
 				flag = true;
 			}
 		}
-		
+		try{
+		if(flag == false)
+			throw new Exception();
+		}catch(Exception e){
+			capacity++;
+			new ErrorDialog("Ther is no animal\nwith such ID");
+		}
 		if(flag)
 			shelterAnimals.remove(animal);
 		
-		if(flag == false)
-			throw new IllegalAccessError();
+		
 	}
 	
 	

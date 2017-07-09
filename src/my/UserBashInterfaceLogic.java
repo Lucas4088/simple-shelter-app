@@ -7,18 +7,20 @@ import java.util.List;
 
 public class UserBashInterfaceLogic {
 	private static Shelter myShelter;
-	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	//private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
 	public UserBashInterfaceLogic(){
 		myShelter = new Shelter(10);
-		
-	}
-	public static void main(String[] args) {
-		String message = null;
-		UserBashInterfaceLogic userBashInterfaceLogic = new UserBashInterfaceLogic();
 		parseData();
+	}
+	/*public static void main(String[] args) {
+		String message = null;
+		
+		
 		
 		System.out.println("Hello!");
 		System.out.println("Options: ");
+		System.out.println("Status");
 		System.out.println("Add cat/dog name");
 		System.out.println("Remove ID");
 		System.out.println("Quit and save press 'q'");
@@ -32,10 +34,14 @@ public class UserBashInterfaceLogic {
 			
 		}while(!message.equals(new String("q")));
 		
-		save();
-	}
+		do{
+			;
+		}while(true);
+		
+	}*/
 	
-	public static void handleMessage(String m){
+	//terminal input
+	/*public static void handleMessage(String m){
 		String[] messageTab;
 		messageTab = m.split(" ", 3);
 	
@@ -56,6 +62,14 @@ public class UserBashInterfaceLogic {
 			if(messageTab[0].equals(new String("Remove")))
 				myShelter.removeAnimal(Integer.valueOf(messageTab[1]));
 		}
+	}*/
+	
+	public static String getStatus(){
+		return myShelter.getCapacity()+"/"+myShelter.getTotalCapacity()+"\n"+myShelter.toString();
+	}
+	
+	public static void remove(String ID){
+		myShelter.removeAnimal(Integer.valueOf(ID));
 	}
 	
 	public static void save(){
@@ -66,6 +80,14 @@ public class UserBashInterfaceLogic {
 		}
 		
 		fileManaging.writeToFile();
+	}
+	
+	public static void add(String choice, String name){
+		if(choice.equals(new String("Dog"))){
+			myShelter.addAnimal(new Dog(name));
+		}else if(choice.equals(new String("Cat"))){
+			myShelter.addAnimal(new Cat(name));
+		}
 	}
 	
 	public static void parseData(){
