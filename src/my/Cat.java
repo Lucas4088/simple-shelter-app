@@ -2,6 +2,6 @@ package my;
 
 public class Cat extends Animal{
 	public Cat(String name){
-		super(name);
+		super("cat : " + name);
 	}
 }

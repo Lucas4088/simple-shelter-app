@@ -31,6 +31,21 @@ public class Shelter {
 		}
 	}
 	
+	public void addAnimal(Animal a, Integer ID){
+		capacity++;
+		try{
+			if(capacity>totalCapacity)
+				throw new IndexOutOfBoundsException();
+			a.setID(ID);
+			shelterAnimals.add(a);
+			
+		}catch(IndexOutOfBoundsException iobe){
+			System.out.println("The shelter is full");
+			System.out.println("Unable to add new animal");
+			capacity--;
+		}
+	}
+	
 	public void removeAnimal(int ID){
 		Animal animal = null;
 		boolean flag = false; 
@@ -61,11 +76,9 @@ public class Shelter {
 		boolean flag = true;
 		Random myRand = new Random();
 		int myID = 0;
-		Animal animal;
 		myID = 1000 + myRand.nextInt(8999);
 
 		while(flag && !shelterAnimals.isEmpty()){
-			System.out.println("Bum");
 			myID = 1000 + myRand.nextInt(8999);
 			flag = false;
 			for(Animal a : shelterAnimals){
@@ -81,6 +94,10 @@ public class Shelter {
 		return capacity;
 	}
 	
+	public Integer getTotalCapacity(){
+		return totalCapacity;
+	}
+	
 	@Override
 	public String toString(){
 		String myString ="";
@@ -91,4 +108,7 @@ public class Shelter {
 		return myString;
 	}
 	
+	public List<Animal> getShelterList(){
+		return shelterAnimals;
+	}
 }

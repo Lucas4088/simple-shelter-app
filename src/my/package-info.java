@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author lukas
- *
- */
-package my;
