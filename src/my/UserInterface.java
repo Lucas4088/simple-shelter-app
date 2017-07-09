@@ -5,9 +5,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 
 public class UserInterface extends JFrame {
 	
@@ -16,6 +19,7 @@ public class UserInterface extends JFrame {
 	private JTextArea statusArea;
 	
 	public UserInterface() {
+		setTitle("Shelter");
 		getContentPane().setLayout(null);
 		
 		String[] animals ={"Dog","Cat"};
@@ -35,6 +39,7 @@ public class UserInterface extends JFrame {
 					if(nameField.getText().isEmpty())
 						throw new Exception();
 					UserBashInterfaceLogic.add(comboBox.getSelectedItem().toString(), nameField.getText());
+					nameField.setText("");
 				}catch (Exception ex) {
 					new ErrorDialog("Name cannot be empty");
 					
@@ -56,6 +61,7 @@ public class UserInterface extends JFrame {
 					if(IDField.getText().isEmpty())
 						throw new Exception();
 					UserBashInterfaceLogic.remove(IDField.getText());
+					IDField.setText("");
 				}catch (Exception ex) {
 					new ErrorDialog("ID cannot be empty");
 					
@@ -100,9 +106,23 @@ public class UserInterface extends JFrame {
 		scrollPane.setBounds(10, 126, 375, 124);
 		getContentPane().add(scrollPane);
 		
-		
+		addWindowListener(new WindowAdapter(){
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				String ObjButtons[] = {"Yes","No"};
+			    int PromptResult = JOptionPane.showOptionDialog(null, 
+			        "Are you sure you want to exit?", "Closing", 
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
+			        ObjButtons,ObjButtons[1]);
+			    if(PromptResult==0)
+			    {
+			      System.exit(0);          
+			    }
+			}
+		});
 		setSize(420, 300);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setVisible(true);
 	}
 	
