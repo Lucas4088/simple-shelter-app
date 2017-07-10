@@ -82,6 +82,20 @@ public class UserBashInterfaceLogic {
 		fileManaging.writeToFile();
 	}
 	
+	public static void saveToDB(Animal a){
+		DatabaseManaging databaseManaging = new DatabaseManaging();
+		String[] stringAnimal = new String[3];
+		stringAnimal[0] = Integer.toString(a.getID());
+		stringAnimal[1] = "'"+a.getName().split(" : ", 2)[1]+"'";
+		if(a instanceof Dog){
+			stringAnimal[2] = Integer.toString(1);
+		}else if(a instanceof Cat){
+			stringAnimal[2] = Integer.toString(2);
+		}
+		
+		databaseManaging.insertInto("Animals", stringAnimal);
+	}
+	
 	public static void add(String choice, String name){
 		if(choice.equals(new String("Dog"))){
 			myShelter.addAnimal(new Dog(name));

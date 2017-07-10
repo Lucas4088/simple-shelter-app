@@ -23,7 +23,7 @@ public class Shelter {
 			
 			a.setID(findFreeID());
 			shelterAnimals.add(a);
-			
+			UserBashInterfaceLogic.saveToDB(a);
 		}catch(IndexOutOfBoundsException iobe){
 			new ErrorDialog("The shelter is full \nUnable to add new animal");
 			capacity--;
@@ -69,9 +69,10 @@ public class Shelter {
 			capacity++;
 			new ErrorDialog("Ther is no animal\nwith such ID");
 		}
-		if(flag)
+		if(flag){
 			shelterAnimals.remove(animal);
-		
+			(new DatabaseManaging()).remove("Animals", animal.getID());
+		}
 		
 	}
 	

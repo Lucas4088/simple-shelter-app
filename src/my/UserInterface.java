@@ -27,6 +27,7 @@ public class UserInterface extends JFrame {
 		comboBox.setBounds(10, 11, 87, 20);
 		getContentPane().add(comboBox);
 		
+		
 		nameField = new JTextField();
 		nameField.setBounds(114, 11, 86, 20);
 		getContentPane().add(nameField);
@@ -69,7 +70,7 @@ public class UserInterface extends JFrame {
 			}
 		});
 		
-		btnRemove.setBounds(114, 52, 89, 23);
+		btnRemove.setBounds(114, 52, 86, 23);
 		getContentPane().add(btnRemove);
 		
 		JButton btnStatus = new JButton("Status");
