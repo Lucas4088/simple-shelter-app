@@ -47,7 +47,7 @@ public class UserInterface extends JFrame {
 				}
 			}
 		});
-		btnAdd.setBounds(222, 10, 89, 23);
+		btnAdd.setBounds(222, 10, 104, 23);
 		getContentPane().add(btnAdd);
 		
 		IDField = new JTextField();
@@ -106,6 +106,15 @@ public class UserInterface extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(statusArea);
 		scrollPane.setBounds(10, 126, 375, 124);
 		getContentPane().add(scrollPane);
+		
+		JButton btnSaveToCsv = new JButton("Save to CSV");
+		btnSaveToCsv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserBashInterfaceLogic.writeToCSV();
+			}
+		});
+		btnSaveToCsv.setBounds(222, 92, 104, 23);
+		getContentPane().add(btnSaveToCsv);
 		
 		addWindowListener(new WindowAdapter(){
 

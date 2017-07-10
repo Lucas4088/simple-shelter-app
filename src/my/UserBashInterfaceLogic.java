@@ -1,6 +1,7 @@
 package my;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -106,6 +107,18 @@ public class UserBashInterfaceLogic {
 		}
 	}
 	
+	public static void writeToCSV(){
+		String csvFile = "C:\\Users\\lukas\\Java workspaces\\Simple Shelter App\\Shelter.csv";
+		FileWriter writer;
+		try {
+			writer = new FileWriter(csvFile);
+			CSVManaging.writeLine(writer, myShelter.getShelterList());
+			writer.close();
+		} catch (IOException e) {
+			new ErrorDialog(e.getMessage());
+		}
+		
+	}
 	public static void parseDBData(){
 		(new DatabaseManaging()).parseDatabaseData(myShelter);
 	}
