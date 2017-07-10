@@ -104,7 +104,7 @@ public class UserInterface extends JFrame {
 		statusArea.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane(statusArea);
-		scrollPane.setBounds(10, 126, 375, 124);
+		scrollPane.setBounds(10, 126, 426, 124);
 		getContentPane().add(scrollPane);
 		
 		JButton btnSaveToCsv = new JButton("Save to CSV");
@@ -115,6 +115,15 @@ public class UserInterface extends JFrame {
 		});
 		btnSaveToCsv.setBounds(222, 92, 104, 23);
 		getContentPane().add(btnSaveToCsv);
+		
+		JButton btnSaveToPdf = new JButton("Save to PDF");
+		btnSaveToPdf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserBashInterfaceLogic.exportToPDF();
+			}
+		});
+		btnSaveToPdf.setBounds(347, 92, 89, 23);
+		getContentPane().add(btnSaveToPdf);
 		
 		addWindowListener(new WindowAdapter(){
 
@@ -131,7 +140,7 @@ public class UserInterface extends JFrame {
 			    }
 			}
 		});
-		setSize(420, 300);
+		setSize(462, 300);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setVisible(true);
 	}

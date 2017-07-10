@@ -119,6 +119,12 @@ public class UserBashInterfaceLogic {
 		}
 		
 	}
+	
+	public static void exportToPDF(){
+		String csvFile = "C:\\Users\\lukas\\Java workspaces\\Simple Shelter App\\Shelter.csv";
+		PDFManaging.CSVToPDF(csvFile);
+		
+	}
 	public static void parseDBData(){
 		(new DatabaseManaging()).parseDatabaseData(myShelter);
 	}

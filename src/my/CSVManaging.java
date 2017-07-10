@@ -20,6 +20,7 @@ public class CSVManaging {
 	public static void writeLine(Writer w, List<Animal> animals) throws IOException{
 		
 		StringBuilder sb = new StringBuilder();
+		sb.append("ID").append(DEFAULT_OPERATOR).append("Type").append(DEFAULT_OPERATOR).append("Name").append("\n");
 		for(Animal a : animals){
 			sb.append(DEFAULT_QUOTE).append(a.getID()).append(DEFAULT_QUOTE).append(DEFAULT_OPERATOR);
 			sb.append(DEFAULT_QUOTE).append(a.getName().split(" : ",2)[0]).append(DEFAULT_QUOTE).append(DEFAULT_OPERATOR);
