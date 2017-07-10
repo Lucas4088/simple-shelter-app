@@ -11,7 +11,9 @@ public class UserBashInterfaceLogic {
 	
 	public UserBashInterfaceLogic(){
 		myShelter = new Shelter(10);
-		parseData();
+		parseDBData();
+		//for reading from file
+		//parseData();
 	}
 	/*public static void main(String[] args) {
 		String message = null;
@@ -104,6 +106,10 @@ public class UserBashInterfaceLogic {
 		}
 	}
 	
+	public static void parseDBData(){
+		(new DatabaseManaging()).parseDatabaseData(myShelter);
+	}
+	//reading from file
 	public static void parseData(){
 		List<String> data;
 		String[] stringArray = new String[3];

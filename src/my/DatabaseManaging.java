@@ -82,4 +82,44 @@ public class DatabaseManaging {
 			}
 		}
 	}
+	
+	public void parseDatabaseData(Shelter myShelter){
+		String sql = "SELECT * FROM ANIMALS";
+		ResultSet resultSet;
+		
+		try{
+			Class.forName(JDBC_DRIVER);
+			
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+			
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery(sql);
+			
+			while(resultSet.next()){
+				if(resultSet.getInt(3)==1)
+					myShelter.addAnimal(new Dog(resultSet.getString(2)),resultSet.getInt(1));
+				else if(resultSet.getInt(3)==2)
+					myShelter.addAnimal(new Cat(resultSet.getString(2)),resultSet.getInt(1));
+			}
+			resultSet.close();
+		}catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			new ErrorDialog(e.getMessage());
+		}catch(SQLException sqle){
+			new ErrorDialog(sqle.getMessage());
+		}finally {
+			try{
+				if(stmt != null)
+					conn.close();
+			}catch (SQLException sqlee) {
+				
+			}
+			try{
+				if(conn != null)
+					conn.close();
+			}catch(SQLException sqleee){
+				new ErrorDialog(sqleee.getMessage());
+			}
+		}
+	}
 }
